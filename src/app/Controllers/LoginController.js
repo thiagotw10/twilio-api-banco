@@ -4,17 +4,8 @@ const bcrypt = require('bcryptjs');
 
 class LoginController{
 
-    async index(req, res){
-
-
-        const {email, senha} = req.body
-
-        const data = {
-            email,
-            senha
-        }
-        
-         data.senha = await bcrypt.hash(data.senha, 8);
+    async index(req, res){ 
+  
 
         let userExistEmail = await User.findOne({ email: req.body.email});
         let userExistSenha = await User.findOne({ senha: req.body.senha});
