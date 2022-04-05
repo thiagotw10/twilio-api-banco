@@ -9,7 +9,10 @@ class LoginController{
 
         const {email, senha} = req.body
 
-
+        const data = {
+            email,
+            senha
+        }
         
          data.senha = await bcrypt.hash(data.senha, 8);
 
