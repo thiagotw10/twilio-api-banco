@@ -9,15 +9,12 @@ class LoginController{
 
         const {email, senha} = req.body
 
-        const data = {
-            email,
-            senha
-        }
+
         
          data.senha = await bcrypt.hash(data.senha, 8);
 
         let userExistEmail = await User.findOne({ email: req.body.email});
-        let userExistSenha = await User.findOne({ senha: data.senha });
+        let userExistSenha = await User.findOne({ senha: req.body.senha});
 
         if(userExistEmail && userExistSenha){
 
