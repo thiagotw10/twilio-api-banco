@@ -20,11 +20,12 @@ class App {
         this.app.use((req, res, next) =>{
             
             
-            res.header("access-controll-allow-origin", "*");
-            res.header("access-controll-allow-methods", "GET, POST, PUT, DELETE");
-            res.header("access-controll-allow-headers", "access, content-type, authorization, acept, origin, x-Requested-With")
+           res.header("Access-Controll-Allow-Origin", "*");
+           res.header("Access-Controll-Allow-Methods", "GET, POST, PUT, DELETE");
+           res.header("Access-Controll-Allow-Headers", "Access, Content-type, Authorization, Acept, Origin, X-Requested-With")
+
       
-            this.app.use(cors({origin: "https://semantix-api-2.herokuapp.com", credentials: true}));
+            this.app.use(cors({origin: "*", credentials: true}));
             next();
         })
     }
