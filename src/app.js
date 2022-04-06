@@ -24,7 +24,7 @@ class App {
             res.header("Access-Controll-Allow-Methods", "GET, POST, PUT, DELETE");
             res.header("Access-Controll-Allow-Headers", "Access, Content-type, Authorization, Acept, Origin, X-Requested-With")
       
-            this.app.use(cors());
+            this.app.use(cors({origin: "https://thiagotw10.github.io", credentials: true}));
             next();
         })
     }
