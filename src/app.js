@@ -20,9 +20,12 @@ class App {
         this.app.use((req, res, next) =>{
             
             
+           res.header("Access-Control-Allow-Origin", "https://thiagotw10.github.io");
+           res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+           res.header("Access-Control-Allow-Headers", "Access, Content-type, Authorization, Acept, Origin, X-Requested-With")
 
       
-            this.app.use(cors({origin: "https://thiagotw10.github.io/semantix-front/", credentials: true}));
+            this.app.use(cors());
             next();
         })
     }
