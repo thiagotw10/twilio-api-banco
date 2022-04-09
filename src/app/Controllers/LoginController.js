@@ -13,7 +13,8 @@ class LoginController{
         if(userExistEmail && userExistSenha){
 
             return res.status(200).json({
-                message: "conectado com sucesso!!"
+                message: "conectado com sucesso!!",
+                userExistEmail
             })
 
         }else{
