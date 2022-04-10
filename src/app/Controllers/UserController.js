@@ -120,20 +120,35 @@ class UserController {
             telefone
          }
 
-        data.senha = await bcrypt.hash(data.senha, 8);
+   if(data.senha){
+            data.senha = await bcrypt.hash(data.senha, 8);
 
-        User.findByIdAndUpdate(id, { nome: data.nome, email: data.email, senha: data.senha, telefone: data.telefone }, function(err, valid){
-            if(err)
-            return res.status(400).json({
-                erro:true 
+            User.findByIdAndUpdate(id, { nome: data.nome, email: data.email, senha: data.senha, telefone: data.telefone }, function(err, valid){
+                if(err)
+                return res.status(400).json({
+                    erro:true 
+                })
+    
+                return res.status(200).json({
+                    message: `usuario editado com sucesso!!`,
+                })
+    
+    
             })
-
-            return res.status(200).json({
-                message: `usuario editado com sucesso!!`,
+        }else{
+            User.findByIdAndUpdate(id, { nome: data.nome, email: data.email, telefone: data.telefone }, function(err, valid){
+                if(err)
+                return res.status(400).json({
+                    erro:true 
+                })
+    
+                return res.status(200).json({
+                    message: `usuario editado com sucesso!!`,
+                })
+    
+    
             })
-
-
-        })
+        }
     }
 
 
