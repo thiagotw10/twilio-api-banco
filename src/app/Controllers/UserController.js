@@ -68,7 +68,7 @@ class UserController {
             telefone
         }
 
-        
+        data.senha = await bcrypt.hash(data.senha, 8);
 
         await User.create(data, (err)=>{
             if(err)
