@@ -113,9 +113,16 @@ class UserController {
 
         const {nome, email, senha, telefone} = req.body;
 
-         senha = await bcrypt.hash(senha, 8);
+         const data = {
+            nome,
+            email,
+            senha,
+            telefone
+         }
 
-        User.findByIdAndUpdate(id, { nome: nome, email: email, senha: senha, telefone: telefone }, function(err, valid){
+        data.senha = await bcrypt.hash(data.senha, 8);
+
+        User.findByIdAndUpdate(id, { nome: data.nome, email: data.email, senha: data.senha, telefone: data.telefone }, function(err, valid){
             if(err)
             return res.status(400).json({
                 erro:true 
