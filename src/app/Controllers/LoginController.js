@@ -6,11 +6,13 @@ class LoginController{
 
     async index(req, res){ 
   
+        const {email, senha} = req.body;
 
-        let userExistEmail = await User.findOne({ email: req.body.email});
-        let userExistSenha = await User.findOne({ senha: req.body.senha});
+         let userExistEmail = await User.findOne({ email: email});
 
-        if(userExistEmail && userExistSenha){
+        const senhaVerifica = await bcrypt.compare(senha, userExistEmail.senha);
+
+        if(userExistEmail && senhaVerifica){
 
             return res.status(200).json({
                 message: "conectado com sucesso!!",
