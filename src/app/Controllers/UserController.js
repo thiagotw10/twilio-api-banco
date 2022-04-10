@@ -107,13 +107,13 @@ class UserController {
 
     }
 
-    update(req, res){
+   async update(req, res){
 
         let id =  req.params.id;
 
         const {nome, email, senha, telefone} = req.body;
 
-       
+         senha = await bcrypt.hash(senha, 8);
 
         User.findByIdAndUpdate(id, { nome: nome, email: email, senha: senha, telefone: telefone }, function(err, valid){
             if(err)
