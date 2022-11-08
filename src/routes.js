@@ -12,11 +12,11 @@ routes.post("/login", LoginController.index);
 // fim da rota do login
 
 // rotas do user
-routes.get("/user", UserController.index);
-routes.post("/user", UserController.add);
-routes.get("/user/:id", UserController.edit);
-routes.put("/user/:id", UserController.update);
-routes.delete("/user/:id", UserController.delete);
+routes.get("/cliente", UserController.index);
+routes.post("/cliente", UserController.add);
+routes.get("/cliente/:id", UserController.edit);
+routes.put("/cliente/:id", UserController.update);
+routes.delete("/cliente/:id", UserController.delete);
 // fim rotas do user
 
 // rotas do jobs

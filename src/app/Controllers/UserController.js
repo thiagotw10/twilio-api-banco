@@ -23,62 +23,37 @@ class UserController {
 
 
         // validação de campos pelo yup 
-            let schema = yup.object().shape({
-
-                nome: yup.string().required(),
-                email: yup.string().email().required(),
-                senha: yup.string().required(),
-                telefone: yup.string().required()
-            })
+            // let schema = yup.object().shape({
+            //     menu: yup.string().required(),
+            //     cliente: yup.string().required(),
+            // })
 
             
-            if(!(await schema.isValid(req.body))){
-                return res.status(400).json({
-                    message: "dados invalidos"
-                })
-            }
+            // if(!(await schema.isValid(req.body))){
+            //     return res.status(400).json({
+            //         message: "dados invalidos"
+            //     })
+            // }
         //   fim yup
 
 
         
-        let userExistEmail = await User.findOne({ email: req.body.email});
-
-        if(userExistEmail){
-
-            return res.status(400).json({
-                message: "nome ou email já existe."
-            })
-        }
-        let userExistNome = await User.findOne({nome: req.body.nome });
-
-        if(userExistNome){
-
-            return res.status(400).json({
-                message: "nome ou email já existe."
-            })
-        }
-
-
-        const {nome, email, senha, telefone} = req.body;
+        const {menus, cliente} = req.body;
 
         const data = {
-            nome,
-            email,
-            senha,
-            telefone
+            menus,
+            cliente,
         }
-
-        data.senha = await bcrypt.hash(data.senha, 8);
 
         await User.create(data, (err)=>{
             if(err)
             return res.status(400).json({
-                message: "erro ao tentar inserir usuario"
+                message: "erro ao tentar cliente"
             })
 
 
             return res.status(200).json({
-                message: "usuario cadastrado com sucesso!!"
+                message: "Cliente cadastrado com sucesso!!"
             })
         })
 
